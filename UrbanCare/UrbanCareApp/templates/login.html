@@ -156,8 +156,18 @@
     <h1>Welcome Back</h1>
     <p>Sign in to manage your bookings and contracts</p>
   </div>
+  {% if error %}
+    <div style="
+        background:#fee2e2;
+        color:#b91c1c;
+        padding:10px;
+        border-radius:8px;
+        margin-bottom:15px;">
+        {{ error }}
+    </div>
+{% endif %}
 
-  <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Login submission intercepted for preview.');">
+  <form action="{% url 'login' %}"  method="POST" >
     
     <div class="form-group">
       <label for="email">Email Address</label>

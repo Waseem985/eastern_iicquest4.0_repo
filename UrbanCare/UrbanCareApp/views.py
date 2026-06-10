@@ -1,8 +1,11 @@
-from django.shortcuts import render,redirect, HttpResponse
+from django.shortcuts import render,redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 #Home_Page
+@login_required
 def home_page(request):
     return render(request, 'homepage.html')
 
@@ -18,7 +21,38 @@ def service_page(request):
 def electrcity_page(request):
     pass
 
+#Provider Dashboard
+@login_required
+def provider_dashboard(request):
+    return render(request, "provider/dashboard.html")
+
 #Register Page
-def sign_in(request):
-    if request.method == 'POST':
-    return render(request,'login.html')
+def login_view(request):
+
+    if request.method == "POST":
+
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        user = authenticate(
+            request,
+            username=email,
+            password=password
+        )
+
+        if user is not None:
+
+            login(request, user)
+
+            if user.role == "provider":
+                return redirect("provider_dashboard")
+
+            return redirect("homepage")
+
+        return render(
+            request,
+            "login.html",
+            {"error": "Invalid email or password"}
+        )
+
+    return render(request, "login.html")
