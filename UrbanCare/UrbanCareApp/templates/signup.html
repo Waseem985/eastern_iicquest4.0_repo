@@ -369,7 +369,8 @@
   </div>
 
   <!-- FORM -->
-  <form action="" method="POST" ">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
 
 
     <!-- Hidden input to store role selection -->
