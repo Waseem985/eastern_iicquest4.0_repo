@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Create Account – Urban Care</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0F1B2D;
+    --navy2:  #F5A623;
+    --saffron:#F5A623;
+    --saffron2:#E8941A;
+    --white:  #F8F5F0;
+    --card:   #FFFFFF;
+    --slate:  #4A5568;
+    --light:  #EDF2F7;
+    --green:  #38A169;
+    --radius: 14px;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Decorative Background Circles */
+  .bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(245, 166, 35, 0.04);
+    z-index: 1;
+  }
+  .bg-circle-1 { width: 500px; height: 500px; top: -200px; left: -150px; }
+  .bg-circle-2 { width: 600px; height: 600px; bottom: -200px; right: -150px; }
+
+  /* ── REGISTRATION CONTAINER ── */
+  .register-container {
+    background: var(--card);
+    width: 100%;
+    max-width: 520px;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    position: relative;
+    color: var(--navy);
+    overflow: hidden;
+  }
+
+  /* Logo Styling */
+  .logo-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-mark {
+    width: 40px; height: 40px; background: var(--saffron);
+    border-radius: 8px; display: grid; place-items: center;
+    font-family: 'Outfit', sans-serif; font-weight: 800; color: var(--navy); font-size: 20px;
+  }
+  .logo-text { font-family: 'Outfit', sans-serif; font-weight: 700; color: #F5A623; font-size: 24px; letter-spacing: -.3px; }
+  .logo-text span { color: var(--saffron2); }
+
+  /* Header */
+  .register-header { text-align: center; margin-bottom: 32px; }
+  .register-header h1 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 28px; color: var(--navy); margin-bottom: 6px; }
+  .register-header p { color: var(--slate); font-size: 14px; }
+
+  /* Account Type Selector (Tabs) */
+  .type-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    background: var(--light);
+    padding: 6px;
+    border-radius: 10px;
+    margin-bottom: 28px;
+  }
+  .type-option {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--slate);
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .type-option.active {
+    background: var(--card);
+    color: var(--navy);
+    box-shadow: 0 2px 8px rgba(15,27,45,0.08);
+  }
+
+  /* Form Layout */
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media(max-width: 480px) {
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+  }
+
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+
+  .input-wrapper { position: relative; display: flex; align-items: center; }
+  .input-icon { position: absolute; left: 14px; font-size: 15px; color: var(--slate); pointer-events: none; }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 12px 14px 12px 40px;
+    border: 1.5px solid var(--light);
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--navy);
+    background: #FAFAFA;
+    outline: none;
+    transition: all 0.2s;
+    appearance: none;
+  }
+  .form-group select {
+    padding-left: 40px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234A5568' viewBox='0 0 16 16'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 14px) center;
+  }
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: var(--saffron);
+    background: var(--card);
+    box-shadow: 0 0 0 3px rgba(245,166,35,0.15);
+  }
+  .form-group select:disabled {
+    background-color: #f1f1f1;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  /* ── ID VERIFICATION SECTION ── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 4px 0 20px;
+  }
+  .section-divider span {
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--slate);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    white-space: nowrap;
+  }
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--light);
+  }
+
+  .id-upload-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  @media(max-width: 480px) {
+    .id-upload-row { grid-template-columns: 1fr; }
+  }
+
+  .upload-box {
+    border: 1.5px dashed #CBD5E0;
+    border-radius: 10px;
+    background: #FAFAFA;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    overflow: hidden;
+    position: relative;
+  }
+  .upload-box:hover { border-color: var(--saffron); background: #fffdf7; }
+  .upload-box.has-file { border-style: solid; border-color: var(--green); background: #f0fff4; }
+
+  .upload-box input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: none;
+  }
+
+  .upload-inner {
+    padding: 16px 12px;
+    text-align: center;
+    pointer-events: none;
+  }
+  .upload-icon { font-size: 24px; margin-bottom: 6px; }
+  .upload-label { font-size: 12px; font-weight: 600; color: var(--navy); display: block; margin-bottom: 2px; }
+  .upload-hint  { font-size: 11px; color: var(--slate); }
+
+  .upload-preview {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    display: none;
+    border-radius: 8px;
+  }
+  .upload-box.has-file .upload-preview { display: block; }
+  .upload-box.has-file .upload-inner   { display: none; }
+
+  .upload-filename {
+    font-size: 11px;
+    color: var(--green);
+    text-align: center;
+    padding: 4px 8px 8px;
+    display: none;
+    font-weight: 600;
+  }
+  .upload-box.has-file .upload-filename { display: block; }
+
+  /* ID number format hint badge */
+  .field-hint {
+    font-size: 11px;
+    color: var(--slate);
+    margin-top: 5px;
+    display: block;
+  }
+
+  /* ── SERVICE SELECTION SECTION ── */
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  @media(max-width: 480px) {
+    .service-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .service-card {
+    border: 1.5px solid var(--light);
+    border-radius: 10px;
+    padding: 12px 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #FAFAFA;
+    user-select: none;
+  }
+  .service-card:hover { border-color: var(--saffron); background: #fffdf7; }
+  .service-card.selected {
+    border-color: var(--saffron);
+    background: rgba(245,166,35,0.08);
+    box-shadow: 0 0 0 3px rgba(245,166,35,0.15);
+  }
+  .service-card .svc-icon { font-size: 22px; margin-bottom: 5px; }
+  .service-card .svc-name { font-size: 11px; font-weight: 600; color: var(--navy); line-height: 1.3; }
+  .service-card input[type="checkbox"] { display: none; }
+
+  .experience-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  @media(max-width: 480px) {
+    .experience-row { grid-template-columns: 1fr; gap: 0; }
+  }
+
+  .service-error {
+    font-size: 11px;
+    color: #E53E3E;
+    margin-top: 4px;
+    display: none;
+  }
+
+  /* Terms Checkbox */
+  .terms-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 24px 0;
+    font-size: 13px;
+    color: var(--slate);
+    cursor: pointer;
+  }
+  .terms-check input { margin-top: 3px; accent-color: var(--saffron); cursor: pointer; }
+  .terms-check a { color: var(--navy); font-weight: 600; text-decoration: none; }
+  .terms-check a:hover { text-decoration: underline; color: var(--saffron2); }
+
+  /* Submit Button */
+  .btn-submit {
+    width: 100%;
+    background: var(--saffron);
+    color: var(--navy);
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-bottom: 24px;
+  }
+  .btn-submit:hover { background: var(--saffron2); transform: translateY(-1px); }
+  .btn-submit:active { transform: translateY(0); }
+
+  /* Bottom Switch Link */
+  .switch-form { text-align: center; font-size: 13px; color: var(--slate); }
+  .switch-form a { color: var(--navy); font-weight: 600; text-decoration: none; margin-left: 4px; }
+  .switch-form a:hover { text-decoration: underline; color: var(--saffron2); }
+
+  /* Outer Footer */
+  .register-footer { margin-top: 32px; text-align: center; font-size: 11px; color: rgba(248,245,240,0.3); z-index: 10; }
+
+  /* Decorative mountain strip at bottom of card */
+  .card-mountain { position: absolute; bottom: 0; left: 0; width: 100%; line-height: 0; opacity: 0.05; pointer-events: none; }
+  .card-mountain svg { width: 100%; display: block; }
+</style>
+</head>
+<body>
+
+<div class="bg-circle bg-circle-1"></div>
+<div class="bg-circle bg-circle-2"></div>
+
+<div class="register-container">
+
+  <!-- LOGO -->
+  <div class="logo-wrap">
+    <a class="logo" href="home-services.html">
+      <div class="logo-mark">U</div>
+      <span class="logo-text">Urban<span>Care</span></span>
+    </a>
+  </div>
+
+  <!-- HEADER -->
+  <div class="register-header">
+    <h1>Create an Account</h1>
+    <p>Join Urban Care today to find or provide home services</p>
+  </div>
+
+  <!-- ACCOUNT TYPE TABS -->
+  <div class="type-selector">
+    <div class="type-option active" id="tab-client" onclick="setAccountType('client')">Customer</div>
+    <div class="type-option" id="tab-provider" onclick="setAccountType('provider')">Service Provider</div>
+  </div>
+
+  <!-- FORM -->
+  <form action="{% url 'login' %}" method="POST" ">
+    
+
+    <!-- Hidden input to store role selection -->
+    <input type="hidden" id="account-type" name="account_type" value="client" />
+
+    <!-- Full Name Field -->
+    <div class="form-group">
+      <label for="fullname">Full Name</label>
+      <div class="input-wrapper">
+        <span class="input-icon">👤</span>
+        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required />
+      </div>
+    </div>
+
+    <!-- Contact Row -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <span class="input-icon">✉</span>
+          <input type="email" id="email" name="email" placeholder="name@example.com" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <div class="input-wrapper">
+          <span class="input-icon">📞</span>
+          <input type="tel" id="phone" name="phone" placeholder="98XXXXXXXX"
+            pattern="[9][7-8][0-9]{8}"
+            title="Please enter a valid Nepalese mobile number" required />
+        </div>
+      </div>
+    </div>
+
+    <!-- Location: Province + District in a row -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="province">Province</label>
+        <div class="input-wrapper">
+          <span class="input-icon">📍</span>
+          <select id="province" name="province" required>
+            <option value="koshi" selected>Koshi Province</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="district">District</label>
+        <div class="input-wrapper">
+          <span class="input-icon">📍</span>
+          <select id="district" name="district" onchange="updateCities()" required>
+            <option value="" disabled selected>Select district</option>
+            <option value="morang">Morang</option>
+            <option value="sunsari">Sunsari</option>
+            <option value="jhapa">Jhapa</option>
+            <option value="udayapur">Udayapur</option>
+            <option value="dhankuta">Dhankuta</option>
+            <option value="ilam">Ilam</option>
+            <option value="bhojpur">Bhojpur</option>
+            <option value="sankhuwasabha">Sankhuwasabha</option>
+            <option value="panchthar">Panchthar</option>
+            <option value="okhaldhunga">Okhaldhunga</option>
+            <option value="khotang">Khotang</option>
+            <option value="taplejung">Taplejung</option>
+            <option value="tehrathum">Tehrathum</option>
+            <option value="solukhumbu">Solukhumbu</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- City / Municipality (dynamic, depends on district) -->
+    <div class="form-group">
+      <label for="city">City / Municipality</label>
+      <div class="input-wrapper">
+        <span class="input-icon">🏙️</span>
+        <select id="city" name="city" disabled required>
+          <option value="" disabled selected>Choose a district first</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ── ID VERIFICATION (Service Providers only) ── -->
+    <div id="id-verification-section">
+      <div class="section-divider"><span>🪪 Identity Verification</span></div>
+
+      <!-- Citizenship Number -->
+      <div class="form-group">
+        <label for="citizenship-no">Citizenship Number</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🪪</span>
+          <input
+            type="text"
+            id="citizenship-no"
+            name="citizenship_number"
+            placeholder="e.g. 12-34-56-78901"
+            pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{5}"
+            title="Format: XX-XX-XX-XXXXX (e.g. 12-34-56-78901)" />
+        </div>
+        <span class="field-hint">Format: District–Zone–Year–Serial (e.g. 12-34-56-78901)</span>
+      </div>
+
+      <!-- Photo Upload: Front + Back -->
+      <div class="form-group">
+        <label>Citizenship Card Photo</label>
+        <div class="id-upload-row">
+
+          <!-- Front Side -->
+          <div class="upload-box" id="box-front">
+            <input type="file" id="id-front" name="id_front" accept="image/*"
+                   onchange="handleUpload(this, 'box-front', 'preview-front', 'name-front')" />
+            <div class="upload-inner">
+              <div class="upload-icon">📄</div>
+              <span class="upload-label">Front Side</span>
+              <span class="upload-hint">JPG, PNG · max 5MB</span>
+            </div>
+            <img id="preview-front" class="upload-preview" alt="Front preview" />
+            <div id="name-front" class="upload-filename"></div>
+          </div>
+
+          <!-- Back Side -->
+          <div class="upload-box" id="box-back">
+            <input type="file" id="id-back" name="id_back" accept="image/*"
+                   onchange="handleUpload(this, 'box-back', 'preview-back', 'name-back')" />
+            <div class="upload-inner">
+              <div class="upload-icon">🔄</div>
+              <span class="upload-label">Back Side</span>
+              <span class="upload-hint">JPG, PNG · max 5MB</span>
+            </div>
+            <img id="preview-back" class="upload-preview" alt="Back preview" />
+            <div id="name-back" class="upload-filename"></div>
+          </div>
+
+        </div>
+      </div>
+    </div><!-- /#id-verification-section -->
+
+    <!-- ── SERVICE SECTION (Service Providers only) ── -->
+    <div id="service-section">
+      <div class="section-divider"><span>🔧 Services & Experience</span></div>
+
+      <!-- Service Type Cards -->
+      <div class="form-group">
+        <label>Select Your Service(s) <span style="font-weight:400;color:var(--slate)">(choose at least one)</span></label>
+        <div class="service-grid">
+
+          <label class="service-card" id="svc-plumber">
+            <input type="checkbox" name="services" value="plumber" onchange="toggleService('svc-plumber')" />
+            <div class="svc-icon">🔧</div>
+            <div class="svc-name">Plumber</div>
+          </label>
+
+          <label class="service-card" id="svc-electrician">
+            <input type="checkbox" name="services" value="electrician" onchange="toggleService('svc-electrician')" />
+            <div class="svc-icon">⚡</div>
+            <div class="svc-name">Electrician</div>
+          </label>
+
+          <label class="service-card" id="svc-tank-cleaner">
+            <input type="checkbox" name="services" value="tank_cleaner" onchange="toggleService('svc-tank-cleaner')" />
+            <div class="svc-icon">🪣</div>
+            <div class="svc-name">Safety Tank Cleaner</div>
+          </label>
+
+          <label class="service-card" id="svc-carpenter">
+            <input type="checkbox" name="services" value="carpenter" onchange="toggleService('svc-carpenter')" />
+            <div class="svc-icon">🪵</div>
+            <div class="svc-name">Carpenter</div>
+          </label>
+
+          <label class="service-card" id="svc-painter">
+            <input type="checkbox" name="services" value="painter" onchange="toggleService('svc-painter')" />
+            <div class="svc-icon">🖌️</div>
+            <div class="svc-name">Painter</div>
+          </label>
+
+          <label class="service-card" id="svc-cleaner">
+            <input type="checkbox" name="services" value="cleaner" onchange="toggleService('svc-cleaner')" />
+            <div class="svc-icon">🧹</div>
+            <div class="svc-name">House Cleaner</div>
+          </label>
+
+        </div>
+        <span class="service-error" id="service-error">Please select at least one service.</span>
+      </div>
+
+      <!-- Experience + Hourly Rate -->
+      <div class="experience-row">
+        <div class="form-group">
+          <label for="experience">Years of Experience</label>
+          <div class="input-wrapper">
+            <span class="input-icon">📅</span>
+            <select id="experience" name="experience">
+              <option value="" disabled selected>Select years</option>
+              <option value="0">Less than 1 year</option>
+              <option value="1">1 year</option>
+              <option value="2">2 years</option>
+              <option value="3">3 years</option>
+              <option value="4">4 years</option>
+              <option value="5">5 years</option>
+              <option value="6-10">6–10 years</option>
+              <option value="10+">10+ years</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="hourly-rate">Hourly Rate (NPR)</label>
+          <div class="input-wrapper">
+            <span class="input-icon">💵</span>
+            <input type="number" id="hourly-rate" name="hourly_rate"
+                   placeholder="e.g. 500" min="50" max="99999" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Short Bio -->
+      <div class="form-group">
+        <label for="bio">Short Bio <span style="font-weight:400;color:var(--slate)">(optional)</span></label>
+        <div class="input-wrapper" style="align-items:flex-start">
+          <span class="input-icon" style="top:13px;position:absolute">📝</span>
+          <textarea id="bio" name="bio"
+            placeholder="Briefly describe your skills and work experience…"
+            rows="3"
+            style="width:100%;padding:12px 14px 12px 40px;border:1.5px solid var(--light);border-radius:10px;font-family:'Inter',sans-serif;font-size:14px;color:var(--navy);background:#FAFAFA;outline:none;resize:vertical;transition:border-color 0.2s,box-shadow 0.2s;"
+            onfocus="this.style.borderColor='var(--saffron)';this.style.boxShadow='0 0 0 3px rgba(245,166,35,0.15)'"
+            onblur="this.style.borderColor='var(--light)';this.style.boxShadow='none'"
+          ></textarea>
+        </div>
+      </div>
+    </div><!-- /#service-section -->
+
+    <!-- Password Row -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="password" name="password" placeholder="••••••••" minlength="6" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="confirm-password" name="confirm-password" placeholder="••••••••" minlength="6" required />
+        </div>
+      </div>
+    </div>
+
+    <!-- Terms Checkbox -->
+    <label class="terms-check">
+      <input type="checkbox" required />
+      <span>I agree to the UrbanCare <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</span>
+    </label>
+
+    <!-- Register Button -->
+    <button type="submit" class="btn-submit">Sign Up</button>
+
+    <!-- Form Switcher -->
+    <div class="switch-form">
+      Already have an account? <a href="#">Sign In</a>
+    </div>
+
+  </form>
+
+  <!-- Decorative bottom mountain silhouette inside card -->
+  <div class="card-mountain">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 L0,40 L80,10 L160,30 L260,0 L360,20 L440,5 L540,25 L620,8 L720,28 L820,4 L920,22 L1020,6 L1120,26 L1220,10 L1320,30 L1440,15 L1440,60 Z" fill="#0F1B2D"/>
+    </svg>
+  </div>
+
+</div>
+
+<!-- Outer Footer -->
+<div class="register-footer">
+  <p>© 2026 UrbanCare. Koshi Province, Nepal. All rights reserved.</p>
+</div>
+
+<script>
+  // ── ID PHOTO UPLOAD PREVIEW ──
+  function handleUpload(input, boxId, previewId, nameId) {
+    const box     = document.getElementById(boxId);
+    const preview = document.getElementById(previewId);
+    const nameEl  = document.getElementById(nameId);
+    const file    = input.files[0];
+
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert('File is too large. Please upload an image under 5MB.');
+      input.value = '';
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = e => {
+      preview.src    = e.target.result;
+      nameEl.textContent = '✓ ' + file.name;
+      box.classList.add('has-file');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ── SERVICE CARD SELECTION TOGGLE ──
+  function toggleService(cardId) {
+    const card = document.getElementById(cardId);
+    const checkbox = card.querySelector('input[type="checkbox"]');
+    if (checkbox.checked) {
+      card.classList.add('selected');
+    } else {
+      card.classList.remove('selected');
+    }
+    // Dynamically clear validation error if checked
+    if(document.querySelectorAll('input[name="services"]:checked').length > 0) {
+      document.getElementById('service-error').style.display = 'none';
+    }
+  }
+
+  // ── ACCOUNT TYPE TABS TOGGLE LOGIC ──
+  function setAccountType(type) {
+    const tabClient   = document.getElementById('tab-client');
+    const tabProvider = document.getElementById('tab-provider');
+    const typeInput   = document.getElementById('account-type');
+    
+    const idSection   = document.getElementById('id-verification-section');
+    const serviceSection = document.getElementById('service-section');
+    
+    const idFields    = idSection.querySelectorAll('input');
+    const expField    = document.getElementById('experience');
+    const rateField   = document.getElementById('hourly-rate');
+
+    if (type === 'client') {
+      tabClient.classList.add('active');
+      tabProvider.classList.remove('active');
+      typeInput.value    = 'client';
+      
+      // Hide sections completely
+      idSection.style.display = 'none';
+      serviceSection.style.display = 'none';
+      
+      // Remove validation blockers
+      idFields.forEach(f => { f.removeAttribute('required'); f.value = ''; });
+      expField.removeAttribute('required');
+      rateField.removeAttribute('required');
+      
+      // Clean up inputs so no stale provider data passes to backend
+      expField.selectedIndex = 0;
+      rateField.value = '';
+      document.getElementById('bio').value = '';
+      document.querySelectorAll('input[name="services"]').forEach(cb => {
+        cb.checked = false;
+        cb.parentElement.classList.remove('selected');
+      });
+      
+      // Clear visual upload structures
+      document.getElementById('box-front').classList.remove('has-file');
+      document.getElementById('box-back').classList.remove('has-file');
+      document.getElementById('preview-front').src = '';
+      document.getElementById('preview-back').src = '';
+    } else {
+      tabProvider.classList.add('active');
+      tabClient.classList.remove('active');
+      typeInput.value    = 'provider';
+      
+      // Reveal structures
+      idSection.style.display = 'block';
+      serviceSection.style.display = 'block';
+      
+      // Enforce validation constraints
+      idFields.forEach(f => f.setAttribute('required', ''));
+      expField.setAttribute('required', '');
+      rateField.setAttribute('required', '');
+    }
+  }
+
+  // Initial Configuration Lifecycle on Loading Page
+  document.addEventListener('DOMContentLoaded', () => {
+    setAccountType('client');
+  });
+
+  // ── FORM SUBMISSION AND CUSTOM VALIDATION ──
+  function validateFormFormalities(event) {
+    event.preventDefault();
+    const currentRole = document.getElementById('account-type').value;
+
+    if (currentRole === 'provider') {
+      const selectedServices = document.querySelectorAll('input[name="services"]:checked');
+      if (selectedServices.length === 0) {
+        document.getElementById('service-error').style.display = 'block';
+        document.getElementById('service-error').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return false;
+      }
+    }
+
+    alert('Registration submitted successfully!');
+    return true;
+  }
+
+  // ── PASSWORD MATCH VALIDATION ──
+  const password        = document.getElementById('password');
+  const confirmPassword = document.getElementById('confirm-password');
+
+  function validatePassword() {
+    if (password.value !== confirmPassword.value) {
+      confirmPassword.setCustomValidity("Passwords Don't Match");
+    } else {
+      confirmPassword.setCustomValidity('');
+    }
+  }
+  password.onchange        = validatePassword;
+  confirmPassword.onkeyup  = validatePassword;
+
+  // ── DISTRICT → CITY CASCADE ──
+  const cityData = {
+    morang:        ['Biratnagar', 'Sundar Haraincha', 'Urlabari', 'Belbari'],
+    sunsari:       ['Dharan', 'Itahari', 'Inaruwa', 'Duhabi'],
+    jhapa:         ['Birtamod', 'Damak', 'Mechinagar', 'Bhadrapur', 'Arjundhara', 'Shivasatashi'],
+    udayapur:      ['Triyuga (Gaighat)', 'Katari'],
+    dhankuta:      ['Dhankuta'],
+    ilam:          ['Ilam', 'Suryodaya (Fikkal)'],
+    bhojpur:       ['Bhojpur'],
+    sankhuwasabha: ['Khandbari'],
+    panchthar:     ['Phidim'],
+    okhaldhunga:   ['Siddhicharan'],
+    khotang:       ['Diktel Rupakot Majhuwagadhi'],
+    taplejung:     ['Phungling'],
+    tehrathum:     ['Myanglung'],
+    solukhumbu:    ['Solu Dudhkunda (Salleri)']
+  };
+
+  function updateCities() {
+    const districtSelect   = document.getElementById('district');
+    const citySelect       = document.getElementById('city');
+    const selectedDistrict = districtSelect.value;
+
+    citySelect.innerHTML = '';
+
+    if (selectedDistrict && cityData[selectedDistrict]) {
+      citySelect.disabled = false;
+
+      const defaultOption = document.createElement('option');
+      defaultOption.value    = '';
+      defaultOption.text     = 'Select city/municipality';
+      defaultOption.disabled = true;
+      defaultOption.selected = true;
+      citySelect.appendChild(defaultOption);
+
+      cityData[selectedDistrict].forEach(city => {
+        const option   = document.createElement('option');
+        option.value   = city.toLowerCase().replace(/\s+/g, '-');
+        option.text    = city;
+        citySelect.appendChild(option);
+      });
+    } else {
+      citySelect.disabled = true;
+      const defaultOption = document.createElement('option');
+      defaultOption.text  = 'Choose a district first';
+      citySelect.appendChild(defaultOption);
+    }
+  }
+</script>
+</body>
+</html>

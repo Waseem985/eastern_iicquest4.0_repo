@@ -17,3 +17,8 @@ def service_page(request):
 #Electricity page
 def electrcity_page(request):
     pass
+
+#Register Page
+def sign_in(request):
+    if request.method == 'POST':
+    return render(request,'login.html')

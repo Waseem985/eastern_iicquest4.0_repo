@@ -52,6 +52,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'UrbanCare.urls'
+AUTH_USER_MODEL = "accounts.User"
 
 TEMPLATES = [
     {

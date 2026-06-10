@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Login – Urban Care</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0F1B2D;
+    --navy2:  #162436;
+    --saffron:#F5A623;
+    --saffron2:#E8941A;
+    --white:  #F8F5F0;
+    --card:   #FFFFFF;
+    --slate:  #4A5568;
+    --light:  #EDF2F7;
+    --green:  #38A169;
+    --radius: 14px;
+  }
+
+  body { 
+    font-family: 'Inter', sans-serif; 
+    background: var(--navy); 
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Decorative Background Elements matching the main theme */
+  .bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(245, 166, 35, 0.04);
+    z-index: 1;
+  }
+  .bg-circle-1 { width: 400px; height: 400px; top: -100px; left: -100px; }
+  .bg-circle-2 { width: 500px; height: 500px; bottom: -150px; right: -150px; }
+
+  /* ── LOGIN CONTAINER ── */
+  .login-container {
+    background: var(--card);
+    width: 100%;
+    max-width: 440px;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    position: relative;
+    color: var(--navy);
+    overflow: hidden;
+  }
+
+  /* Logo Styling */
+  .logo-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-mark {
+    width: 40px; height: 40px; background: var(--saffron);
+    border-radius: 8px; display: grid; place-items: center;
+    font-family: 'Outfit', sans-serif; font-weight: 800; color: var(--navy); font-size: 20px;
+  }
+  .logo-text { font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--navy); font-size: 24px; letter-spacing: -.3px; }
+  .logo-text span { color: var(--saffron2); }
+
+  /* Header */
+  .login-header { text-align: center; margin-bottom: 28px; }
+  .login-header h1 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 26px; color: var(--navy); margin-bottom: 6px; }
+  .login-header p { color: var(--slate); font-size: 14px; }
+
+  /* Form Elements */
+  .form-group { margin-bottom: 20px; position: relative; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  
+  .input-wrapper { position: relative; display: flex; align-items: center; }
+  .input-icon { position: absolute; left: 14px; font-size: 16px; color: var(--slate); pointer-events: none; }
+  
+  .form-group input[type="email"],
+  .form-group input[type="password"] {
+    width: 100%;
+    padding: 12px 14px 12px 40px;
+    border: 1.5px solid var(--light);
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--navy);
+    background: #FAFAFA;
+    outline: none;
+    transition: all 0.2s;
+  }
+  .form-group input:focus { border-color: var(--saffron); background: var(--card); box-shadow: 0 0 0 3px rgba(245,166,35,0.15); }
+
+  /* Utilities */
+  .form-options { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; font-size: 13px; }
+  .remember-me { display: flex; align-items: center; gap: 6px; cursor: pointer; color: var(--slate); }
+  .remember-me input { cursor: pointer; accent-color: var(--saffron); }
+  .forgot-pass { color: var(--navy); font-weight: 600; text-decoration: none; transition: color 0.2s; }
+  .forgot-pass:hover { color: var(--saffron2); }
+
+  /* Submit Button */
+  .btn-submit {
+    width: 100%;
+    background: var(--saffron);
+    color: var(--navy);
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-bottom: 20px;
+  }
+  .btn-submit:hover { background: var(--saffron2); transform: translateY(-1px); }
+  .btn-submit:active { transform: translateY(0); }
+
+  /* Bottom Switch link */
+  .switch-form { text-align: center; font-size: 13px; color: var(--slate); padding-top: 10px; }
+  .switch-form a { color: var(--navy); font-weight: 600; text-decoration: none; margin-left: 4px; }
+  .switch-form a:hover { text-decoration: underline; color: var(--saffron2); }
+
+  /* Small footer inside the login page */
+  .login-footer { margin-top: 32px; text-align: center; font-size: 11px; color: rgba(248,245,240,0.3); z-index: 10; }
+
+  /* Tiny decorative mountain strip inside card bottom */
+  .card-mountain { position: absolute; bottom: 0; left: 0; width: 100%; line-height: 0; opacity: 0.05; pointer-events: none; }
+  .card-mountain svg { width: 100%; display: block; }
+</style>
+</head>
+<body>
+
+<div class="bg-circle bg-circle-1"></div>
+<div class="bg-circle bg-circle-2"></div>
+
+<div class="login-container">
+  <div class="logo-wrap">
+    <a class="logo" href="#">
+      <div class="logo-mark"></div>
+      <span class="logo-text">Urban<span>Care</span></span>
+    </a>
+  </div>
+
+  <div class="login-header">
+    <h1>Welcome Back</h1>
+    <p>Sign in to manage your bookings and contracts</p>
+  </div>
+
+  <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Login submission intercepted for preview.');">
+    
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <div class="input-wrapper">
+        <span class="input-icon">✉</span>
+        <input type="email" id="email" name="email" placeholder="name@example.com" required autocomplete="email" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div class="input-wrapper">
+        <span class="input-icon">🔒</span>
+        <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="current-password" />
+      </div>
+    </div>
+
+    <div class="form-options">
+      <label class="remember-me">
+        <input type="checkbox" name="remember" />
+        Remember me
+      </label>
+      <a href="#" class="forgot-pass">Forgot Password?</a>
+    </div>
+
+    <button type="submit" class="btn-submit">Sign In</button>
+
+    <div class="switch-form">
+      Don't have an account? <a href="#">Create an account</a>
+    </div>
+  </form>
+
+  <div class="card-mountain">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 L0,40 L80,10 L160,30 L260,0 L360,20 L440,5 L540,25 L620,8 L720,28 L820,4 L920,22 L1020,6 L1120,26 L1220,10 L1320,30 L1440,15 L1440,60 Z" fill="#0F1B2D"/>
+    </svg>
+  </div>
+</div>
+
+<div class="login-footer">
+  <p>© 2026 Urbancare. Koshi Province, Nepal. All rights reserved.</p>
+</div>
+
+</body>
+</html>
