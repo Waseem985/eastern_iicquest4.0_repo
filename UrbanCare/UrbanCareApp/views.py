@@ -29,6 +29,11 @@ def electricity_page(request):
     return render(request, 'electrician.html')
 
 
+def HomeService_page(request):
+    """Render the electrician-specific service page."""
+    return render(request, 'hss.html')
+
+
 def contact_us(request):
     """Handle contact form submission and display contact page."""
     if request.method == "POST":

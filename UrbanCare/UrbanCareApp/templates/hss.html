@@ -1,5 +1,5 @@
- {% extends "layout.html" %}
- <title>Electrician Services – UrbanCare</title>
+{% extends "layout.html" %}
+ <title>Home Support Services – UrbanCare</title>
  {% block content %}
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
@@ -20,7 +20,6 @@
       color: var(--text);
       background: #fff;
     }
-
 
     /* ── HERO ── */
     .hero {
@@ -313,36 +312,37 @@
     }
   </style>
 <body>
+
 <!-- HERO -->
 <section class="hero">
   <div class="hero-text">
-    <span class="hero-eyebrow">⚡ Professional Electricians</span>
-    <h1>Expert <span>Electrical</span><br/>Services at Your Door</h1>
-    <p>From minor repairs to full installations — certified electricians reach you fast. Safe, reliable, and fairly priced.</p>
+    <span class="hero-eyebrow">🏠 Trusted Home Helpers</span>
+    <h1>Complete <span>Home Support</span><br/>Services at Your Door</h1>
+    <p>From daily chores to deep cleaning and elder care — trained, background-verified helpers arrive on time, every time.</p>
     <div class="hero-cta">
-      <a href="#" class="btn-primary">Book an Electrician</a>
+      <a href="#" class="btn-primary">Book a Helper</a>
       <a href="#services" class="btn-outline">View All Services</a>
     </div>
   </div>
-  <div class="hero-icon">⚡</div>
+  <div class="hero-icon">🏠</div>
 </section>
 
 <!-- STATS -->
 <div class="stats">
   <div class="stat-item">
-    <div class="stat-number">500+</div>
-    <div class="stat-label">Certified Electricians</div>
+    <div class="stat-number">1,200+</div>
+    <div class="stat-label">Verified Helpers</div>
   </div>
   <div class="stat-item">
-    <div class="stat-number">15,000+</div>
-    <div class="stat-label">Jobs Completed</div>
+    <div class="stat-number">40,000+</div>
+    <div class="stat-label">Homes Served</div>
   </div>
   <div class="stat-item">
-    <div class="stat-number">4.8★</div>
+    <div class="stat-number">4.9★</div>
     <div class="stat-label">Average Rating</div>
   </div>
   <div class="stat-item">
-    <div class="stat-number">60 min</div>
+    <div class="stat-number">45 min</div>
     <div class="stat-label">Avg. Response Time</div>
   </div>
 </div>
@@ -350,93 +350,149 @@
 <!-- SERVICES GRID -->
 <section class="services-bg" id="services">
   <p class="section-label">What We Cover</p>
-  <h2 class="section-title">All Electrical Works</h2>
-  <p class="section-subtitle">Our electricians handle everything — residential, commercial, and emergency — with full safety compliance.</p>
+  <h2 class="section-title">All Home Support Works</h2>
+  <p class="section-subtitle">Our helpers handle everything inside your home — cleaning, cooking, caregiving, and more — with professionalism and care.</p>
 
   <div class="services-grid">
 
     <div class="service-card">
-      <div class="card-icon">🔌</div>
-      <h3>Wiring & Rewiring</h3>
-      <p>New wiring for homes, shops, or offices. Safe and code-compliant with quality cables and proper conduit fitting.</p>
-      <span class="card-tag">Residential</span>
+      <div class="card-icon">🧹</div>
+      <h3>Regular Home Cleaning</h3>
+      <p>Sweeping, mopping, dusting, and vacuuming of all rooms, hallways, staircases, and common areas on a scheduled basis.</p>
+      <span class="card-tag">Daily</span>
     </div>
 
     <div class="service-card">
-      <div class="card-icon">💡</div>
-      <h3>Light Fitting & Replacement</h3>
-      <p>Installation of ceiling lights, LED panels, tube lights, chandeliers, and outdoor fixtures of all types.</p>
-      <span class="card-tag">Common</span>
+      <div class="card-icon teal">🧽</div>
+      <h3>Deep Cleaning</h3>
+      <p>Thorough scrubbing of walls, ceiling fans, window grills, behind furniture, and hard-to-reach corners for a full reset.</p>
+      <span class="card-tag teal-tag">Intensive</span>
     </div>
 
     <div class="service-card">
-      <div class="card-icon teal">🔧</div>
-      <h3>Switchboard & Socket Repair</h3>
-      <p>Repair or replace faulty switchboards, plug sockets, USB outlets, and power extension boards.</p>
-      <span class="card-tag teal-tag">Repair</span>
+      <div class="card-icon">🍳</div>
+      <h3>Cooking & Meal Prep</h3>
+      <p>Home-style cooking for breakfast, lunch, or dinner. Follows dietary preferences, recipe instructions, and portion sizes.</p>
+      <span class="card-tag">Daily</span>
     </div>
 
     <div class="service-card">
-      <div class="card-icon">⚙️</div>
-      <h3>MCB / Fuse Box Work</h3>
-      <p>Installation, upgrade, or repair of MCB distribution boards, circuit breakers, and main fuse panels.</p>
-      <span class="card-tag">Safety</span>
-    </div>
-
-    <div class="service-card">
-      <div class="card-icon teal">🌡️</div>
-      <h3>Fan Installation & Repair</h3>
-      <p>Ceiling fans, exhaust fans, and table fans — installation, speed-controller fixing, and blade replacement.</p>
+      <div class="card-icon teal">👕</div>
+      <h3>Laundry & Ironing</h3>
+      <p>Washing, drying, folding, and ironing of clothes, bed linen, curtains, and other fabrics — by hand or machine.</p>
       <span class="card-tag teal-tag">Common</span>
     </div>
 
     <div class="service-card">
-      <div class="card-icon">❄️</div>
-      <h3>AC Electrical Connection</h3>
-      <p>Dedicated AC power line fitting, stabilizer wiring, and safe earthing for air conditioner units.</p>
-      <span class="card-tag">Residential</span>
+      <div class="card-icon">🍽️</div>
+      <h3>Utensil & Dish Washing</h3>
+      <p>Daily cleaning of all cooking utensils, plates, glasses, and kitchen tools — with or without dishwasher assistance.</p>
+      <span class="card-tag">Daily</span>
     </div>
 
     <div class="service-card">
-      <div class="card-icon teal">🔋</div>
-      <h3>Inverter & Battery Wiring</h3>
-      <p>Inverter installation, battery connection, changeover switch setup, and UPS system integration.</p>
-      <span class="card-tag teal-tag">Residential</span>
+      <div class="card-icon teal">🛁</div>
+      <h3>Bathroom & Toilet Cleaning</h3>
+      <p>Scrubbing tiles, sinks, toilets, shower areas, mirrors, and floor drains to maintain hygiene and prevent buildup.</p>
+      <span class="card-tag teal-tag">Hygiene</span>
     </div>
 
     <div class="service-card">
-      <div class="card-icon">🏗️</div>
-      <h3>Commercial Electrical Setup</h3>
-      <p>Full electrical work for shops, offices, and small factories — panel boards, three-phase wiring, and load balancing.</p>
-      <span class="card-tag">Commercial</span>
+      <div class="card-icon">🪟</div>
+      <h3>Window & Glass Cleaning</h3>
+      <p>Cleaning of interior and exterior window panes, glass doors, balcony railings, and sliding window frames.</p>
+      <span class="card-tag">Weekly</span>
     </div>
 
     <div class="service-card">
-      <div class="card-icon">🛡️</div>
-      <h3>Earthing & Surge Protection</h3>
-      <p>Proper earthing installation, lightning arrestors, surge protectors for appliances and buildings.</p>
-      <span class="card-tag">Safety</span>
+      <div class="card-icon teal">🛏️</div>
+      <h3>Bed Making & Linen Change</h3>
+      <p>Daily bed making, pillow arrangement, and periodic linen changes for all bedrooms including guest rooms.</p>
+      <span class="card-tag teal-tag">Daily</span>
     </div>
 
     <div class="service-card">
-      <div class="card-icon teal">📡</div>
-      <h3>CCTV & Security Wiring</h3>
-      <p>Electrical support for CCTV camera installation — cable routing, power supply fitting, and DVR power setup.</p>
-      <span class="card-tag teal-tag">Commercial</span>
+      <div class="card-icon">🗑️</div>
+      <h3>Garbage & Waste Management</h3>
+      <p>Collecting, segregating, and disposing of household waste from all rooms and kitchen — wet, dry, and recyclables.</p>
+      <span class="card-tag">Daily</span>
     </div>
 
     <div class="service-card">
-      <div class="card-icon">🚨</div>
-      <h3>Emergency Electrical Repair</h3>
-      <p>Urgent short-circuit fixes, tripped breaker restoration, spark issues, and sudden power failure diagnosis.</p>
-      <span class="card-tag">Emergency</span>
+      <div class="card-icon teal">🪴</div>
+      <h3>Indoor Plant Care</h3>
+      <p>Watering, pruning, repotting, and general upkeep of indoor and balcony plants as per care instructions.</p>
+      <span class="card-tag teal-tag">Weekly</span>
     </div>
 
     <div class="service-card">
-      <div class="card-icon teal">☀️</div>
-      <h3>Solar Panel Connection</h3>
-      <p>Electrical wiring and grid tie-in for solar panel systems, net metering connection, and charge controller setup.</p>
-      <span class="card-tag teal-tag">Green Energy</span>
+      <div class="card-icon">🛒</div>
+      <h3>Grocery & Errand Runs</h3>
+      <p>Buying groceries, picking up medicines, paying bills, and running household errands from a provided list.</p>
+      <span class="card-tag">On-Demand</span>
+    </div>
+
+    <div class="service-card">
+      <div class="card-icon teal">👴</div>
+      <h3>Elderly Care & Companionship</h3>
+      <p>Assisting senior family members with daily routines, mobility support, medication reminders, and friendly companionship.</p>
+      <span class="card-tag teal-tag">Care</span>
+    </div>
+
+    <div class="service-card">
+      <div class="card-icon">👶</div>
+      <h3>Baby & Child Care</h3>
+      <p>Caring for infants and young children — feeding, bathing, playtime supervision, and school-day morning routines.</p>
+      <span class="card-tag">Care</span>
+    </div>
+
+    <div class="service-card">
+      <div class="card-icon teal">🐾</div>
+      <h3>Pet Care Assistance</h3>
+      <p>Feeding, grooming assistance, walking, and basic care for household pets while you are away or busy.</p>
+      <span class="card-tag teal-tag">On-Demand</span>
+    </div>
+
+    <div class="service-card">
+      <div class="card-icon">📦</div>
+      <h3>Post-Move / Post-Event Cleaning</h3>
+      <p>Full clean-up after shifting into a new home, hosting a party, renovation work, or a festive celebration.</p>
+      <span class="card-tag">Intensive</span>
+    </div>
+
+    <div class="service-card">
+      <div class="card-icon teal">🧳</div>
+      <h3>Packing & Unpacking Help</h3>
+      <p>Careful packing of household items before moving and systematic unpacking and organising after shifting.</p>
+      <span class="card-tag teal-tag">On-Demand</span>
+    </div>
+
+    <div class="service-card">
+      <div class="card-icon">🪑</div>
+      <h3>Sofa & Carpet Cleaning</h3>
+      <p>Spot cleaning, vacuuming, and foam-wash treatment for sofas, carpets, rugs, mattresses, and upholstered furniture.</p>
+      <span class="card-tag">Monthly</span>
+    </div>
+
+    <div class="service-card">
+      <div class="card-icon teal">🧴</div>
+      <h3>Kitchen Deep Cleaning</h3>
+      <p>Degreasing stovetops, chimney filters, cabinet shelves, exhaust fans, and inside the refrigerator and microwave.</p>
+      <span class="card-tag teal-tag">Intensive</span>
+    </div>
+
+    <div class="service-card">
+      <div class="card-icon">🏥</div>
+      <h3>Patient / Post-Surgery Care</h3>
+      <p>At-home assistance for patients recovering from illness or surgery — hygiene support, meals, and mobility help.</p>
+      <span class="card-tag">Care</span>
+    </div>
+
+    <div class="service-card">
+      <div class="card-icon teal">🗄️</div>
+      <h3>Home Organisation & Decluttering</h3>
+      <p>Sorting, organising wardrobes, shelves, storerooms, and kitchen cabinets to create a neat and functional living space.</p>
+      <span class="card-tag teal-tag">On-Demand</span>
     </div>
 
   </div>
@@ -446,12 +502,12 @@
 <section>
   <p class="section-label">Simple Process</p>
   <h2 class="section-title">How It Works</h2>
-  <p class="section-subtitle">Getting an electrician has never been this easy.</p>
+  <p class="section-subtitle">Getting a trusted home helper has never been this easy.</p>
   <div class="how-grid">
     <div class="how-step">
       <div class="step-circle">1</div>
       <h4>Choose Service</h4>
-      <p>Pick the electrical service you need from our full list.</p>
+      <p>Pick the home support task you need from our full list.</p>
     </div>
     <div class="how-step">
       <div class="step-circle">2</div>
@@ -460,13 +516,13 @@
     </div>
     <div class="how-step">
       <div class="step-circle">3</div>
-      <h4>Expert Arrives</h4>
-      <p>A verified, certified electrician shows up at your door.</p>
+      <h4>Helper Arrives</h4>
+      <p>A background-verified, trained helper shows up on time.</p>
     </div>
     <div class="how-step">
       <div class="step-circle">4</div>
-      <h4>Job Done & Pay</h4>
-      <p>Work completed safely. Pay only after you're satisfied.</p>
+      <h4>Done & Pay</h4>
+      <p>Work completed with care. Pay only after you're satisfied.</p>
     </div>
   </div>
 </section>
@@ -479,37 +535,37 @@
   <div class="pricing-grid">
     <div class="price-card">
       <div class="tag">Basic</div>
-      <h3>Minor Repair</h3>
-      <div class="price-amount">Rs. 300 <span>/ visit</span></div>
+      <h3>Single Task</h3>
+      <div class="price-amount">Rs. 250 <span>/ visit</span></div>
       <ul>
-        <li>Switch / socket fix</li>
-        <li>Fuse replacement</li>
-        <li>Light bulb fitting</li>
-        <li>30-min service window</li>
+        <li>One task per visit</li>
+        <li>Dish washing or sweeping</li>
+        <li>Bed making or dusting</li>
+        <li>Up to 1-hr service</li>
       </ul>
       <a href="#" class="book-btn outline-btn">Book Now</a>
     </div>
     <div class="price-card featured">
       <div class="tag">Most Booked</div>
-      <h3>Standard Service</h3>
-      <div class="price-amount">Rs. 700 <span>/ visit</span></div>
+      <h3>Half-Day Helper</h3>
+      <div class="price-amount">Rs. 650 <span>/ visit</span></div>
       <ul>
-        <li>Fan / light installation</li>
-        <li>Switchboard wiring</li>
-        <li>MCB/fuse box work</li>
-        <li>Up to 2-hr service</li>
+        <li>Cleaning + cooking</li>
+        <li>Laundry & ironing</li>
+        <li>Kitchen & bathroom clean</li>
+        <li>Up to 4-hr service</li>
       </ul>
       <a href="#" class="book-btn">Book Now</a>
     </div>
     <div class="price-card">
-      <div class="tag">Full Job</div>
-      <h3>Full Wiring / Setup</h3>
+      <div class="tag">Full Support</div>
+      <h3>Full-Day / Regular</h3>
       <div class="price-amount">Custom <span>quote</span></div>
       <ul>
-        <li>Full house/office wiring</li>
-        <li>Inverter / solar setup</li>
-        <li>Commercial electrical</li>
-        <li>Free inspection included</li>
+        <li>Full-day household help</li>
+        <li>Elder / child / patient care</li>
+        <li>Monthly subscription available</li>
+        <li>Free needs assessment</li>
       </ul>
       <a href="#" class="book-btn outline-btn">Get Quote</a>
     </div>
@@ -518,9 +574,9 @@
 
 <!-- CTA BANNER -->
 <div class="cta-banner">
-  <h2>Need an Electrician Right Now?</h2>
-  <p>Emergency or planned — we're available 7 days a week, early morning to late evening.</p>
-  <a href="{%url 'customer_bookings' %}">📞 Book Instantly</a>
+  <h2>Need a Home Helper Today?</h2>
+  <p>One-time visit or regular support — we're available 7 days a week, morning to evening.</p>
+  <a href="">📞 Book Instantly</a>
 </div>
 
 <!-- FOOTER -->
@@ -528,4 +584,4 @@
   &copy; 2026 <span>UrbanCare</span>. Connecting you with skilled professionals — quickly and safely.
 </footer>
 
-{% endblock content%}
+{% endblock content %}

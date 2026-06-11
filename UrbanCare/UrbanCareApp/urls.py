@@ -26,6 +26,7 @@ urlpatterns = [
     # SERVICE PAGES
     # ====================
     path("services/electrician/", views.electricity_page, name="electrical"),  # Fixed typo in view name
+    path("services/homeservice/", views.HomeService_page, name="homeservice"),
 
     # ====================
     # CUSTOMER ROUTES
