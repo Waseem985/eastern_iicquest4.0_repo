@@ -470,7 +470,7 @@
         >
           <ul class="navbar__list">
             <li class="navbar__item">
-              <a href="#" class="navbar__link">Home</a>
+              <a href="{% url 'homepage' %}" class="navbar__link">Home</a>
             </li>
             <li class="navbar__item">
               <a href="{% url 'about' %}" class="navbar__link">About Us</a>
@@ -528,7 +528,7 @@
         </p>
 
         <div class="hero-buttons">
-          <a href="{% url 'service' %}" class="hero-btn hero-btn-primary">
+          <a href="{% url 'services' %}" class="hero-btn hero-btn-primary">
             Services
           </a>
 

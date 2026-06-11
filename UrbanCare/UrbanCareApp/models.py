@@ -3,7 +3,14 @@ from django.db import models
 from django.conf import settings
 
 
+# =========================
+# Custom User Model
+# =========================
 class User(AbstractUser):
+    """
+    Extends Django's default user model to add roles.
+    """
+
     CUSTOMER = "customer"
     PROVIDER = "provider"
 
@@ -18,12 +25,23 @@ class User(AbstractUser):
         default=CUSTOMER
     )
 
+    def __str__(self):
+        return self.username
 
+
+# =========================
+# Provider Profile Model
+# =========================
 class ProviderProfile(models.Model):
+    """
+    Extra information for service providers.
+    One-to-one relationship with User.
+    """
+
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name="provider_profile" # Added for easier reverse lookups (e.g., user.provider_profile)
+        related_name="provider_profile"
     )
 
     # Location Information
@@ -31,9 +49,9 @@ class ProviderProfile(models.Model):
     district = models.CharField(max_length=100)
     municipality = models.CharField(max_length=100)
 
-    # Credentials (Cloudinary will automatically organize these into subfolders)
+    # Identity Verification
     citizenship_Num = models.CharField(max_length=100, blank=True)
-    
+
     czn_front = models.ImageField(
         upload_to='credentials/citizenship_front/',
         blank=True,
@@ -47,37 +65,49 @@ class ProviderProfile(models.Model):
     )
 
     # Professional Details
-    service_type = models.CharField(
-        max_length=255, 
-        blank=True
-    )
-    
-    # Refinement: Changed to PositiveIntegerField since years of experience is a number
+    service_type = models.CharField(max_length=255, blank=True)
+
     experience_years = models.PositiveIntegerField(
         default=0,
-        blank=True,
-        null=True
+        null=True,
+        blank=True
     )
 
     short_bio = models.TextField(blank=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.service_type or 'No Service Assigned'}"
-    
+        return f"{self.user.username} - {self.service_type or 'No Service'}"
 
+
+# =========================
+# Contact Form Messages
+# =========================
 class ContactMessage(models.Model):
+    """
+    Stores messages from Contact Us page.
+    """
+
     name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=15, blank=True, null=True)
     subject = models.CharField(max_length=150)
     message = models.TextField()
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
-    
-class Booking(models.Model):
 
+
+# =========================
+# Booking System
+# =========================
+class Booking(models.Model):
+    """
+    Handles customer bookings for providers.
+    """
+
+    # Status options
     PENDING = "Pending"
     ACCEPTED = "Accepted"
     REJECTED = "Rejected"
@@ -106,13 +136,21 @@ class Booking(models.Model):
 
     booking_date = models.DateTimeField(auto_now_add=True)
 
+    # FIXED: now properly uses choices
     status = models.CharField(
         max_length=20,
-        default="Pending"
+        choices=STATUS_CHOICES,
+        default=PENDING
     )
 
 
+# =========================
+# Notifications
+# =========================
 class Notification(models.Model):
+    """
+    Simple notification system for providers.
+    """
 
     provider = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -120,7 +158,6 @@ class Notification(models.Model):
     )
 
     message = models.CharField(max_length=255)
-
     is_read = models.BooleanField(default=False)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -129,6 +166,16 @@ class Notification(models.Model):
         return self.message
 
 
+# =========================
+# Services List
+# =========================
 class Service(models.Model):
+    """
+    Available services like electrician, plumber, etc.
+    """
+
     name = models.CharField(max_length=100)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        return self.name
