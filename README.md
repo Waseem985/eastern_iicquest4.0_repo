@@ -1,39 +1,44 @@
-UrbanCare - All Services Portal
-Overview
+UrbanCare is a web-based service marketplace designed to connect customers with trusted local service providers such as electricians, plumbers, cleaners, technicians, and other skilled professionals. The platform simplifies the process of finding, verifying, and booking services through a centralized digital system. Customers can browse available services, view provider profiles, and submit booking requests, while service providers can manage their profiles, receive notifications, and handle customer bookings efficiently. By promoting transparency, accessibility, and convenience, UrbanCare helps local professionals expand their reach and creates a reliable ecosystem for service discovery and management within communities. Built using Django, HTML, CSS, and Bootstrap, the platform aims to modernize traditional service hiring and support local economic growth through digital transformation.
 
-UrbanCare is a web-based service marketplace developed using Django that connects customers with local service providers. The platform allows users to book services such as electricians, plumbers, cleaners, and technicians while enabling providers to manage bookings and showcase their professional profiles.
+Problem Statement
+In many local communities, finding reliable and skilled service providers such as electricians, plumbers, cleaners, and technicians is still a time-consuming and unstructured process. Customers often rely on word-of-mouth or random contacts, which leads to issues like lack of trust, inconsistent pricing, and difficulty in verifying service quality. At the same time, many skilled service providers struggle to reach customers and grow their income due to limited visibility and lack of a digital platform.
 
-The primary goal of UrbanCare is to simplify the process of finding trusted local service professionals and provide a centralized platform for service booking and management.
+Solution Overview
+UrbanCare is a web-based service marketplace that bridges the gap between customers and local service providers. It provides a centralized platform where users can easily search, compare, and book services based on their needs. Service providers can create verified profiles, showcase their skills, and manage bookings efficiently. The system improves trust through structured profiles and booking management while increasing accessibility and convenience for both customers and providers. UrbanCare ultimately aims to digitize local service hiring and make it more transparent, efficient, and reliable.
 
-Features
-Customer Features
-User registration and login
-Browse available services
-Book service providers
-Track booking status
-Contact support through the Contact Us page
-Service Provider Features
-Provider registration and login
-Create and manage professional profiles
-Upload citizenship verification documents
-Specify service category and experience
-Receive booking requests
-Manage booking status (Accept, Reject, Complete)
-Admin Features
-Manage users and providers
-View customer inquiries
-Monitor bookings
-Verify provider information
-Technology Stack
-Backend
-Python
-Django
-Frontend
-HTML5
-CSS3
-Bootstrap 5
-Database
-SQLite (Development)
+Tech Stack
+•	Frontend: HTML5, CSS3, Bootstrap 5
+•	Backend: Django (Python)
+•	Database: SQLite (Development) / PostgreSQL (Production-ready)
+•	Authentication: Django Built-in Authentication System
+•	Media Storage: Cloudinary (for document and image uploads)
+•	Version Control: Git & GitHub
+
+
+
+
+Setup Instructions
+1. Clone Repository
+git clone https://github.com/Waseem985/eastern_iicquest4.0_repo
+cd urbancare
+2. Create Virtual Environment
+python -m venv venv
+3. Activate Environment
+Windows:
+venv\Scripts\activate
+Mac/Linux:
+source venv/bin/activate
+4. Install Dependencies
+pip install -r requirements.txt
+5. Run Migrations
+python manage.py makemigrations
+python manage.py migrate
+6. Create Superuser
+python manage.py createsuperuser
+7. Run Server
+python manage.py runserver
+Visit:
+http://127.0.0.1:8000/
 
 Media Storage
 Cloudinary (for document and image uploads)
@@ -99,34 +104,6 @@ UrbanCare/
 │
 └── manage.py
 
-
-Installation
-Clone Repository
-git clone [https://github.com/Waseem985/urbancare.git](https://github.com/Waseem985/eastern_iicquest4.0_repo)
-Create Virtual Environment
-python -m venv myenv
-Activate Virtual Environment
-
-Windows:
-
-myenv\Scripts\activate
-
-Linux/Mac:
-
-source myenv/bin/activate
-Install Dependencies
-pip install -r requirements.txt
-Run Migrations
-python manage.py makemigrations
-python manage.py migrate
-Create Superuser
-python manage.py createsuperuser
-Start Server
-python manage.py runserver
-
-Visit:
-
-http://127.0.0.1:8000/
 Future Improvements
         Online payment integration
         Real-time notifications
@@ -140,10 +117,6 @@ Project Status
 Currently under active development.
 
 Author
-
 team_eastern
 
-Bachelor in Computer Engineering
-
-Developed as a learning project to explore Django, authentication systems, role-based access control, and service marketplace development.
 
