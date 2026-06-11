@@ -231,25 +231,25 @@
 
             <nav id="navbarMenu" class="navbar__menu" role="navigation" aria-labelledby="navbarToggle">
                 <ul class="navbar__list">
-                    <li class="navbar__item"><a href="#" class="navbar__link">Home</a></li>
+                    <li class="navbar__item"><a href="{% url 'homepage' %}" class="navbar__link">Home</a></li>
                     <li class="navbar__item"><a href="{% url 'about' %}" class="navbar__link">About Us</a></li>
                     
                     <!-- Services Dropdown -->
                     <li class="navbar__item navbar__item--dropdown">
-                        <a href="#" class="navbar__link navbar__link--dropdown" id="servicesToggle">
+                        <a href="{% url 'service' %}" class="navbar__link navbar__link--dropdown" id="servicesToggle">
                             Services
                             <span class="dropdown-arrow">▼</span>
                         </a>
                         <ul class="navbar__dropdown">
-                            <li><a href="#" class="navbar__dropdown-link">Home Support Services</a></li>
-                            <li><a href="#" class="navbar__dropdown-link">Electrician</a></li>
+                            <li><a href="" class="navbar__dropdown-link">Home Support Services</a></li>
+                            <li><a href="{% url 'electrical' %}" class="navbar__dropdown-link">Electrician</a></li>
                             <li><a href="#" class="navbar__dropdown-link">Plumber</a></li>
                             <li><a href="#" class="navbar__dropdown-link">Carpenter</a></li>
                             <li><a href="#" class="navbar__dropdown-link">Safety tank cleaner</a></li>
                         </ul>
                     </li>
 
-                    <li class="navbar__item"><a href="#" class="navbar__link">Contact Us</a></li>
+                    <li class="navbar__item"><a href="{% url 'contact' %}" class="navbar__link">Contact Us</a></li>
                     <li class="navbar__item navbar__item--cta">
                         <a href="{% url 'login' %}" class="navbar__link navbar__link--cta">Register</a>
                     </li>

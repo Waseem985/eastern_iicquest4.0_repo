@@ -364,17 +364,37 @@
 
   <!-- ACCOUNT TYPE TABS -->
   <div class="type-selector">
-    <div class="type-option active" id="tab-client" onclick="setAccountType('client')">Customer</div>
+    <div class="type-option active" id="tab-client" onclick="setAccountType('customer')">Customer</div>
     <div class="type-option" id="tab-provider" onclick="setAccountType('provider')">Service Provider</div>
   </div>
+  {% if error %}
+<div
+style="
+background:#ffe5e5;
+color:#c53030;
+padding:12px;
+border-radius:8px;
+margin-bottom:20px;
+">
+    {{ error }}
+</div>
+{% endif %}
 
   <!-- FORM -->
-  <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-
+ <form
+    method="POST"
+    enctype="multipart/form-data"
+    onsubmit="return validateFormFormalities(event)"
+>
+    {% csrf_token %} 
 
     <!-- Hidden input to store role selection -->
-    <input type="hidden" id="account-type" name="account_type" value="client" />
+   <input
+    type="hidden"
+    id="account-type"
+    name="account_type"
+    value="customer"
+/>
 
     <!-- Full Name Field -->
     <div class="form-group">
@@ -399,7 +419,7 @@
         <div class="input-wrapper">
           <span class="input-icon">📞</span>
           <input type="tel" id="phone" name="phone" placeholder="98XXXXXXXX"
-            pattern="[9][7-8][0-9]{8}"
+            pattern="[9][7-8][0-9]{8}" maxlength="10"
             title="Please enter a valid Nepalese mobile number" required />
         </div>
       </div>
@@ -630,7 +650,7 @@
 
     <!-- Form Switcher -->
     <div class="switch-form">
-      Already have an account? <a href="#">Sign In</a>
+      Already have an account? <a href="{% url 'login' %}">Sign In</a>
     </div>
 
   </form>
@@ -702,10 +722,10 @@
     const expField    = document.getElementById('experience');
     const rateField   = document.getElementById('hourly-rate');
 
-    if (type === 'client') {
+    if (type === 'customer') {
       tabClient.classList.add('active');
       tabProvider.classList.remove('active');
-      typeInput.value    = 'client';
+      typeInput.value    = 'customer';
       
       // Hide sections completely
       idSection.style.display = 'none';
@@ -748,26 +768,38 @@
 
   // Initial Configuration Lifecycle on Loading Page
   document.addEventListener('DOMContentLoaded', () => {
-    setAccountType('client');
+    setAccountType('customer');
   });
 
   // ── FORM SUBMISSION AND CUSTOM VALIDATION ──
   function validateFormFormalities(event) {
-    event.preventDefault();
-    const currentRole = document.getElementById('account-type').value;
+
+    const currentRole =
+        document.getElementById(
+            'account-type'
+        ).value;
 
     if (currentRole === 'provider') {
-      const selectedServices = document.querySelectorAll('input[name="services"]:checked');
-      if (selectedServices.length === 0) {
-        document.getElementById('service-error').style.display = 'block';
-        document.getElementById('service-error').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return false;
-      }
+
+        const selectedServices =
+            document.querySelectorAll(
+                'input[name="services"]:checked'
+            );
+
+        if (selectedServices.length === 0) {
+
+            document.getElementById(
+                'service-error'
+            ).style.display = 'block';
+
+            event.preventDefault();
+
+            return false;
+        }
     }
 
-    alert('Registration submitted successfully!');
-    return true;
-  }
+  return true;
+}
 
   // ── PASSWORD MATCH VALIDATION ──
   const password        = document.getElementById('password');

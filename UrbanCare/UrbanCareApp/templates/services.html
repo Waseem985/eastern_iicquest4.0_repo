@@ -1,0 +1,202 @@
+ {% extends "layout.html" %}
+  <title>Services – UrbanCare</title>
+  {% block content %}
+  <style>
+    /* ── Reset & Base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fff;
+      color: #333;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── PAGE HERO ────────────────────────────────────── */
+    .page-hero {
+      background: var(--light-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 52px 40px 48px;
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: 12px;
+    }
+
+    .page-hero p {
+      font-size: 1.05rem;
+      color: #666;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* ── SERVICES GRID ────────────────────────────────── */
+    .services-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 64px 40px 80px;
+    }
+
+    .services-section h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--blue);
+      margin-bottom: 36px;
+      text-align: center;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    /* Service card */
+    .service-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      transition: box-shadow .25s, transform .25s;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .service-card:hover {
+      box-shadow: 0 10px 32px rgba(0,0,0,.08);
+      transform: translateY(-4px);
+    }
+
+    /* Icon circle */
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #FFF4E0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .service-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .service-card p {
+      font-size: 0.92rem;
+      color: #666;
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--blue);
+      margin-top: 4px;
+      transition: gap .2s;
+    }
+    .service-link:hover { gap: 10px; }
+    .service-link::after { content: '→'; }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    footer {
+      background: #1a1a2e;
+      color: rgba(255,255,255,.6);
+      text-align: center;
+      padding: 22px 40px;
+      font-size: 0.82rem;
+    }
+
+    footer span { color: var(--orange); }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; gap: 16px; }
+      .nav-links { gap: 20px; }
+      .page-hero { padding: 40px 20px; }
+      .page-hero h1 { font-size: 1.9rem; }
+      .services-section { padding: 44px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ── Page Hero ── -->
+  <section class="page-hero">
+    <h1>Our Services</h1>
+    <p>Reliable home and urban care professionals, ready to help when you need them most.</p>
+  </section>
+
+  <!-- ── Services Grid ── -->
+  <section class="services-section">
+    <h2>What We Offer</h2>
+
+    <div class="services-grid">
+
+      <!-- 1. Home Support Services -->
+      <div class="service-card" id="home-support">
+        <div class="service-icon">🏠</div>
+        <h3>Home Support Services</h3>
+        <p>Comprehensive household assistance covering cleaning, maintenance coordination, and day-to-day home management so you can focus on what matters.</p>
+        <a href="#" class="service-link">Book now</a>
+      </div>
+
+      <!-- 2. Electrician -->
+      <div class="service-card" id="electrician">
+        <div class="service-icon">⚡</div>
+        <h3>Electrician</h3>
+        <p>Licensed electricians for installations, repairs, fault-finding, and safety inspections. From a single socket to a full rewire, we've got you covered.</p>
+        <a href="#" class="service-link">Book now</a>
+      </div>
+
+      <!-- 3. Plumber -->
+      <div class="service-card" id="plumber">
+        <div class="service-icon">🔧</div>
+        <h3>Plumber</h3>
+        <p>Expert plumbing services for leaks, blockages, pipe fitting, bathroom installations, and emergency call-outs — available around the clock.</p>
+        <a href="#" class="service-link">Book now</a>
+      </div>
+
+      <!-- 4. Carpenter -->
+      <div class="service-card" id="carpenter">
+        <div class="service-icon">🪚</div>
+        <h3>Carpenter</h3>
+        <p>Skilled carpenters for custom furniture, door and window fitting, flooring, shelving, and bespoke woodwork tailored to your space.</p>
+        <a href="#" class="service-link">Book now</a>
+      </div>
+
+      <!-- 5. Safety Tank Cleaner -->
+      <div class="service-card" id="safety-tank">
+        <div class="service-icon">🛡️</div>
+        <h3>Safety Tank Cleaner</h3>
+        <p>Professional septic and safety tank cleaning with certified equipment. We ensure hygienic removal, disposal, and post-clean inspection for full peace of mind.</p>
+        <a href="#" class="service-link">Book now</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    &copy; 2026 <span>UrbanCare</span>. All rights reserved.
+  </footer>
+
+{% endblock content %}
+</body>
+</html>

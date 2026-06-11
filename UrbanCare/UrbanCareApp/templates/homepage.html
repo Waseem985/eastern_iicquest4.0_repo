@@ -1,2 +1,576 @@
-{% extends "layout.html" %}
-{% block title %}Home{% endblock title %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UrbanCare(All Services Portal)</title>
+    <style>
+      /*
+        */
+      :root {
+        --color-background: #fff;
+        --color-text: #2c3e50;
+        --color-primary: #f5a623;
+        --color-primary-darker: #c0392b; /* For reduced-motion hover */
+        --color-secondary: #3498db;
+        --color-highlight-bg: #f2f5f7;
+        --font-family-sans-serif:
+          "Nunito", system-ui, -apple-system, sans-serif;
+        --font-weight-bold: 700;
+        --navbar-height: 80px;
+        --navbar-padding: 1.5rem;
+        --container-width: 1140px;
+        --transition-speed: 0.3s;
+        --transition-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+
+      @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@500;700&display=swap");
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font-family-sans-serif);
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.6;
+        color: var(--color-text);
+        background-color: var(--color-background);
+      }
+
+      /* Logo Styling */
+      .logo-wrap {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 32px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .logo-mark {
+        width: 40px;
+        height: 40px;
+        background: var(--saffron);
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        font-family: "Outfit", sans-serif;
+        font-weight: 800;
+        color: var(--navy);
+        font-size: 20px;
+      }
+      .logo-text {
+        font-family: "Outfit", sans-serif;
+        font-weight: 700;
+        color: var(--navy);
+        font-size: 24px;
+        letter-spacing: -0.3px;
+      }
+      .logo-text span {
+        color: var(--saffron2);
+      }
+      /* ========================================
+        Services Dropdown Styles
+        ======================================== */
+
+      .navbar__item--dropdown {
+        position: relative;
+      }
+
+      .navbar__link--dropdown {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .dropdown-arrow {
+        font-size: 0.8em;
+        transition: transform 0.3s var(--transition-bounce);
+      }
+
+      .navbar__dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--color-background);
+        border: 2px solid var(--color-highlight-bg);
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        min-width: 180px;
+        padding: 0.5rem 0;
+        z-index: 1000;
+        opacity: 0;
+        transition: all 0.3s var(--transition-bounce);
+      }
+
+      .navbar__dropdown li {
+        text-align: left;
+      }
+
+      .navbar__dropdown-link {
+        display: block;
+        padding: 0.75rem 1.25rem;
+        font-weight: 500;
+        transition: all var(--transition-speed) ease;
+      }
+
+      .navbar__dropdown-link:hover {
+        background-color: var(--color-highlight-bg);
+        padding-left: 1.5rem;
+      }
+
+      /* Show dropdown on hover (Desktop) */
+      @media (min-width: 768px) {
+        .navbar__item--dropdown:hover .navbar__dropdown {
+          display: block;
+          opacity: 1;
+        }
+
+        .navbar__item--dropdown:hover .dropdown-arrow {
+          transform: rotate(180deg);
+        }
+      }
+
+      /* Mobile dropdown behavior */
+      @media (max-width: 767px) {
+        .navbar__dropdown {
+          position: static;
+          transform: none;
+          border: none;
+          box-shadow: none;
+          padding: 0 0 0 1.5rem;
+          margin-top: 0.5rem;
+        }
+
+        .navbar__item--dropdown.dropdown-active .navbar__dropdown {
+          display: block;
+          opacity: 1;
+        }
+
+        .navbar__item--dropdown.dropdown-active .dropdown-arrow {
+          transform: rotate(180deg);
+        }
+      }
+
+      .content {
+        height: 200vh;
+        padding: 120px 2rem;
+        text-align: center;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /*
+        ========================================
+        Navbar Base & Mobile Styles
+        ========================================
+        */
+      .navbar {
+        height: var(--navbar-height);
+        display: flex;
+        align-items: center;
+        background-color: var(--color-background);
+        border-bottom: 2px solid var(--color-highlight-bg);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .navbar__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 var(--navbar-padding);
+      }
+      .navbar__brand {
+        font-size: 1.75rem;
+        font-weight: var(--font-weight-bold);
+        color: var(--color-primary);
+      }
+      .navbar__toggle {
+        display: block;
+        border: none;
+        padding: 0.5rem;
+        background: transparent;
+        cursor: pointer;
+        z-index: 1001;
+      }
+      .navbar__toggle .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: var(--color-text);
+        border-radius: 3px;
+        transition: all var(--transition-speed) var(--transition-bounce);
+      }
+      /* These transforms are for the mobile menu 'hamburger' to 'X' animation */
+      .navbar__toggle.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .navbar__toggle.is-active .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .navbar__toggle.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      .navbar__menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: var(--navbar-height);
+        left: 0;
+        background-color: var(--color-background);
+        border-bottom: 2px solid var(--color-highlight-bg);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
+        z-index: 999;
+      }
+      .navbar__menu.is-active {
+        display: flex;
+      }
+      .navbar__item {
+        text-align: center;
+      }
+      .navbar__link {
+        display: block;
+        padding: 1.5rem;
+        font-weight: var(--font-weight-bold);
+        transition: background-color var(--transition-speed) ease;
+      }
+      .navbar__link:hover,
+      .navbar__link:focus {
+        background-color: var(--color-highlight-bg);
+      }
+      :is(.navbar__toggle, .navbar__link):focus-visible {
+        outline: 3px solid var(--color-secondary);
+        outline-offset: 2px;
+      }
+
+      /*
+        ========================================
+        Desktop Navbar Styles & Animations
+        ========================================
+        */
+      @media (min-width: 768px) {
+        .navbar__toggle {
+          display: none;
+        }
+        .navbar__menu {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          position: static;
+          width: auto;
+          background: none;
+          border: none;
+          box-shadow: none;
+        }
+        .navbar__list {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        .navbar__link {
+          padding: 0.5rem 1rem;
+          position: relative;
+        }
+
+        /* General hover rule that applies to non-CTA links. */
+        .navbar__link:not(.navbar__link--cta):hover,
+        .navbar__link:not(.navbar__link--cta):focus {
+          background-color: transparent;
+        }
+
+        /* Underline animation */
+        .navbar__link:not(.navbar__link--cta)::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 0;
+          height: 3px;
+          background-color: var(--color-secondary);
+          transition: all var(--transition-speed) ease;
+          transform: translateX(-50%);
+        }
+        .navbar__link:not(.navbar__link--cta):hover::after,
+        .navbar__link:not(.navbar__link--cta):focus::after {
+          width: 100%;
+        }
+
+        /* CTA Button */
+        .navbar__item--cta {
+          margin-left: 1rem;
+        }
+        .navbar__link--cta {
+          background-color: var(--color-primary);
+          color: #fff;
+          padding: 0.75rem 1.5rem;
+          border-radius: 50px;
+          transition:
+            transform var(--transition-speed) var(--transition-bounce),
+            background-color var(--transition-speed) ease;
+        }
+
+        .navbar__link--cta:hover,
+        .navbar__link--cta:focus {
+          background-color: var(--color-primary);
+          transform: scale(1.1);
+        }
+      }
+
+      /* Reduced Motion Accessibility */
+      @media (prefers-reduced-motion: reduce) {
+        /* Disable animations */
+        .navbar__toggle .bar,
+        .navbar__link:not(.navbar__link--cta)::after,
+        .navbar__link--cta {
+          transition: none;
+        }
+        /* Instantly show underline for non-CTA links on hover */
+        .navbar__link:not(.navbar__link--cta):hover::after,
+        .navbar__link:not(.navbar__link--cta):focus::after {
+          width: 100%;
+        }
+        /* Disable scaling on CTA and just change color for feedback */
+        .navbar__link--cta:hover,
+        .navbar__link--cta:focus {
+          transform: none;
+          background-color: var(--color-primary-darker);
+        }
+      }
+      body {
+        background-color:"#000000";
+      }
+      .px-3 {
+        padding-right: 1rem !important;
+        padding-left: 1rem !important;
+      }
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+      user agent stylesheet main {
+        display: block;
+        unicode-bidi: isolate;
+      }
+      .text-center {
+        text-align: center !important;
+      }
+      .text-bg-dark {
+        color: #fff !important;
+        background-color: RGBA(
+          var(--bs-dark-rgb),
+          var(--bs-bg-opacity, 1)
+        ) !important;
+      }
+      .hero {
+        min-height: calc(100vh - var(--navbar-height));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .hero-content {
+        max-width: 800px;
+      }
+
+      .hero-content h1 {
+        font-size: 4rem;
+        color: white;
+        margin-bottom: 1rem;
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+        color: #f1f1f1;
+        margin-bottom: 2rem;
+      }
+
+      .hero-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .hero-btn {
+        padding: 12px 28px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: 0.3s ease;
+      }
+
+      .hero-btn-primary {
+        background: var(--color-primary);
+        color: white;
+      }
+
+      .hero-btn-primary:hover {
+        transform: translateY(-3px);
+      }
+
+      .hero-btn-secondary {
+        transform: translateY(-3px);
+        background: #e73d13;
+        color:black;
+      }
+
+      .hero-btn-secondary:hover {
+        transform: translateY(-3px);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="navbar__container">
+        <a href="#" class="navbar__brand">UrbanCare</a>
+        <button
+          class="navbar__toggle"
+          id="navbarToggle"
+          aria-label="Toggle navigation"
+          aria-controls="navbarMenu"
+          aria-expanded="false"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+
+        <nav
+          id="navbarMenu"
+          class="navbar__menu"
+          role="navigation"
+          aria-labelledby="navbarToggle"
+        >
+          <ul class="navbar__list">
+            <li class="navbar__item">
+              <a href="#" class="navbar__link">Home</a>
+            </li>
+            <li class="navbar__item">
+              <a href="{% url 'about' %}" class="navbar__link">About Us</a>
+            </li>
+
+            <!-- Services Dropdown -->
+            <li class="navbar__item navbar__item--dropdown">
+              <a
+                href="#"
+                class="navbar__link navbar__link--dropdown"
+                id="servicesToggle"
+              >
+                Services
+                <span class="dropdown-arrow">▼</span>
+              </a>
+              <ul class="navbar__dropdown">
+                <li>
+                  <a href="#" class="navbar__dropdown-link"
+                    >Home Support Services</a
+                  >
+                </li>
+                <li>
+                  <a href="{% url 'electrical' %}" class="navbar__dropdown-link">Electrician</a>
+                </li>
+                <li><a href="#" class="navbar__dropdown-link">Plumber</a></li>
+                <li><a href="#" class="navbar__dropdown-link">Carpenter</a></li>
+                <li>
+                  <a href="#" class="navbar__dropdown-link"
+                    >Safety tank cleaner</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="navbar__item">
+              <a href="{%url 'contact'%}" class="navbar__link">Contact Us</a>
+            </li>
+            <li class="navbar__item navbar__item--cta">
+              <a href="{% url 'login' %}" class="navbar__link navbar__link--cta"
+                >Register</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="hero">
+      <div class="hero-content">
+        <h1 style="color:#f5a623;">UrbanCare</h1>
+
+        <p style="color:black">
+          Find trusted professionals for all your home service needs. From
+          electricians and plumbers to home support services, UrbanCare connects
+          you with skilled service providers quickly and safely.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="{% url 'service' %}" class="hero-btn hero-btn-primary">
+            Services
+          </a>
+
+          <a href="{% url 'contact' %}"  style ="color: white" class="hero-btn hero-btn-secondary">
+            Learn More
+          </a>
+        </div>
+      </div>
+    </main>
+    <div class="container">{% block content %} {% endblock %}</div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const navbarToggle = document.getElementById("navbarToggle");
+        const navbarMenu = document.getElementById("navbarMenu");
+        const servicesToggle = document.getElementById("servicesToggle");
+
+        // Mobile menu toggle
+        if (navbarToggle && navbarMenu) {
+          navbarToggle.addEventListener("click", function () {
+            navbarToggle.classList.toggle("is-active");
+            navbarMenu.classList.toggle("is-active");
+
+            const isExpanded =
+              navbarToggle.getAttribute("aria-expanded") === "true";
+            navbarToggle.setAttribute("aria-expanded", !isExpanded);
+          });
+        }
+
+        // Services dropdown (desktop hover + mobile click)
+        if (servicesToggle) {
+          const dropdownParent = servicesToggle.parentElement;
+
+          // Desktop: hover works via CSS
+          // Mobile: click to toggle
+          servicesToggle.addEventListener("click", function (e) {
+            if (window.innerWidth < 768) {
+              e.preventDefault();
+              dropdownParent.classList.toggle("dropdown-active");
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

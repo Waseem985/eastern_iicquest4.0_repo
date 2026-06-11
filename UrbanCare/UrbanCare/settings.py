@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     'UrbanCareApp',
 ]
@@ -52,7 +53,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'UrbanCare.urls'
-AUTH_USER_MODEL = "accounts.User"
+AUTH_USER_MODEL = "UrbanCareApp.User"
 
 TEMPLATES = [
     {
@@ -118,6 +119,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
-]
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dirtzieyu',
+    'API_KEY': '113723794389777',
+    'API_SECRET': '7_Vq3yJC_Cgi3sKNwf4GufIq8B4',
+}
+
+# Tell Django to route user-uploaded media files to Cloudinary
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

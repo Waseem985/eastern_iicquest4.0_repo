@@ -63,7 +63,7 @@
   .logo-wrap {
     display: flex;
     justify-content: center;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
   }
   .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
   .logo-mark {
@@ -71,7 +71,7 @@
     border-radius: 8px; display: grid; place-items: center;
     font-family: 'Outfit', sans-serif; font-weight: 800; color: var(--navy); font-size: 20px;
   }
-  .logo-text { font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--navy); font-size: 24px; letter-spacing: -.3px; }
+  .logo-text { font-family: 'Outfit', sans-serif; font-weight: 700; color: #F5A623; font-size: 24px; letter-spacing: -.3px; }
   .logo-text span { color: var(--saffron2); }
 
   /* Header */
@@ -145,9 +145,9 @@
 <div class="bg-circle bg-circle-2"></div>
 
 <div class="login-container">
-  <div class="logo-wrap">
-    <a class="logo" href="#">
-      <div class="logo-mark"></div>
+   <div class="logo-wrap">
+    <a class="logo" href="home-services.html">
+      <div class="logo-mark">U</div>
       <span class="logo-text">Urban<span>Care</span></span>
     </a>
   </div>
@@ -167,8 +167,8 @@
     </div>
 {% endif %}
 
-  <form action="{% url 'login' %}"  method="POST" >
-    
+  <form method="POST" >
+    {% csrf_token %}
     <div class="form-group">
       <label for="email">Email Address</label>
       <div class="input-wrapper">
@@ -196,7 +196,7 @@
     <button type="submit" class="btn-submit">Sign In</button>
 
     <div class="switch-form">
-      Don't have an account? <a href="#">Create an account</a>
+      Don't have an account? <a href="{% url 'signup' %}"> Create an account</a>
     </div>
   </form>
 
