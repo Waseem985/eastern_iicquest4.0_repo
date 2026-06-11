@@ -102,7 +102,7 @@ UrbanCare/
 
 Installation
 Clone Repository
-git clone https://github.com/Waseem985/urbancare.git
+git clone [https://github.com/Waseem985/urbancare.git](https://github.com/Waseem985/eastern_iicquest4.0_repo)
 Create Virtual Environment
 python -m venv myenv
 Activate Virtual Environment
