@@ -34,7 +34,7 @@ CSS3
 Bootstrap 5
 Database
 SQLite (Development)
-PostgreSQL (Production Ready)
+
 Media Storage
 Cloudinary (for document and image uploads)
 Database Models
@@ -44,27 +44,27 @@ Custom user model with role-based authentication.
 
 Roles:
 
-Customer
-Provider
-ProviderProfile
+        Customer
+        Provider
+        ProviderProfile
+
+Stores:
+        
+        Location information
+        Citizenship details
+        Professional information
+        Service category
+        Experience
+        Bio
+        Booking
 
 Stores:
 
-Location information
-Citizenship details
-Professional information
-Service category
-Experience
-Bio
-Booking
-
-Stores:
-
-Customer information
-Provider information
-Service booked
-Booking status
-ContactMessage
+        Customer information
+        Provider information
+        Service booked
+        Booking status
+        ContactMessage
 
 Stores inquiries submitted through the Contact Us page.
 
@@ -92,19 +92,17 @@ UrbanCare/
 │   ├── contact.html
 │   └── services/
 │
-├── static/
-│   ├── css/
-│   ├── images/
-│   └── js/
 │
 ├── media/
 │
 ├── db.sqlite3
 │
 └── manage.py
+
+
 Installation
 Clone Repository
-git clone https://github.com/yourusername/urbancare.git
+git clone https://github.com/Waseem985/urbancare.git
 Create Virtual Environment
 python -m venv myenv
 Activate Virtual Environment
@@ -143,7 +141,7 @@ Currently under active development.
 
 Author
 
-MD Waseem
+team_eastern
 
 Bachelor in Computer Engineering
 
